@@ -34,7 +34,7 @@ const toStream = async (parsed, uri, tor, type, s, e) => {
   if (!parsed.files && uri.startsWith("magnet")) {
     try {
       const engine = torrentStream("magnet:" + uri, {
-        connections: 10, // Limit the number of connections/streams
+        connections: 5, // Limit the number of connections/streams
       });
 
       const res = await new Promise((resolve, reject) => {
@@ -44,7 +44,7 @@ const toStream = async (parsed, uri, tor, type, s, e) => {
 
         setTimeout(() => {
           resolve([]);
-        }, 10000); // Timeout if the server is too slow
+        }, 5000); // Timeout if the server is too slow
       });
 
       parsed.files = res;
