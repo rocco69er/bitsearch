@@ -33,7 +33,7 @@ const toStream = async (parsed, uri, tor, type, s, e) => {
   if (!parsed.files && uri.startsWith("magnet")) {
     try {
       const engine = torrentStream("magnet:" + uri, {
-        connections: 5, // Limit the number of connections/streams
+        connections: 10, // Limit the number of connections/streams
       });
 
       const res = await new Promise((resolve, reject) => {
