@@ -34,7 +34,7 @@ const toStream = async (parsed, uri, tor, type, s, e) => {
   if (!parsed.files && uri.startsWith("magnet")) {
     try {
       const engine = torrentStream("magnet:" + uri, {
-        connections: 10, // Limit the number of connections/streams
+        connections: 5, // Limit the number of connections/streams
       });
 
       const res = await new Promise((resolve, reject) => {
@@ -174,7 +174,7 @@ const host = "http:/129.153.72.60:9117";
 const apiKey = "k7lsbawbs4aq8t1s56c58jm091gm7mk7";
 
 let fetchTorrent = async (query) => {
-  let url = `${host}/api/v2.0/indexers/all/results?apikey=${apiKey}&Query=${query}&Category[]=2000&Category[]=5000&Category[]=8000&Category[]=100001&Category[]=100002&Category[]=100003&Tracker[]=filelisting&Tracker[]=bitsearch`;
+  let url = `${host}/api/v2.0/indexers/all/results?apikey=${apiKey}&Query=${query}&Category[]=2000&Category[]=5000&Category[]=8000&Tracker[]=bitsearch`;
 
   try {
     const response = await fetch(url, {
