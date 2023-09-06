@@ -4,7 +4,9 @@ const app = express();
 const fetch = require("node-fetch");
 const torrentStream = require("torrent-stream");
 const bodyParser = require("body-parser");
+const pLimit = require('p-limit');
 const http = require("http");
+const limit = pLimit(7);
 
 function getSize(size) {
   const gb = 1024 * 1024 * 1024;
