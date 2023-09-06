@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 const fetch = require("node-fetch");
 const torrentStream = require("torrent-stream");
-
 const bodyParser = require("body-parser");
 
 function getSize(size) {
@@ -174,7 +173,7 @@ const host = "http:/129.153.72.60:9117";
 const apiKey = "k7lsbawbs4aq8t1s56c58jm091gm7mk7";
 
 let fetchTorrent = async (query) => {
-  let url = `${host}/api/v2.0/indexers/all/results?apikey=${apiKey}&Query=${query}&Category[]=2000&Category[]=5000&Category[]=8000&Tracker[]=bitsearch`;
+  let url = `${host}/api/v2.0/indexers/all/results?apikey=${apiKey}&Query=${query}&Category%5B%5D=2000&Category%5B%5D=5000&Category%5B%5D=8000&Tracker%5B%5D=filelisting&Tracker%5B%5D=yourbittorrent`;
 
   try {
     const response = await fetch(url, {
@@ -233,7 +232,7 @@ function getMeta(id, type) {
 
 app.get("/manifest.json", (req, res) => {
   const manifest = {
-    id: "mikmc.od.org+++",
+    id: "mikmc.od.org",
     version: "3.0.0",
     name: "HYJackett",
     description: "Movie & TV Streams from Jackett",
